@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arquivo do Diário | Aulas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#007D40",
+                    "secondary": "#4CAF50",
+                    "background-light": "#F5F5F5",
+                    "surface": "#FFFFFF",
+                    "text-main": "#212121",
+                    "text-secondary": "#616161",
+                    "dark-bg": "#0f172a",
+                },
+                fontFamily: {
+                    "display": ["Lexend", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 }
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-dark-bg text-text-main dark:text-white">
+<div class="relative flex min-h-screen w-full flex-col">
+
+<header class="bg-primary text-white">
+<div class="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center gap-4">
+<div class="size-6 text-white">
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.53 7.94a1.5 1.5 0 0 0-1.06-.44H12.75l-1.63-3.26a1.5 1.5 0 0 0-1.34-.84H4.5A1.5 1.5 0 0 0 3 4.9v14.2a1.5 1.5 0 0 0 1.5 1.5h16.5a1.5 1.5 0 0 0 1.5-1.5v-10c0-.4-.16-.78-.47-1.06zM15 15.4h-3v3H9v-3H6v-3h3v-3h3v3h3v3z"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Diário de Bordo IFPR</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium transition-colors hover:text-white/80" href="index.html">Home</a>
+<a class="text-sm font-bold transition-colors text-white" href="aulas.html">Aulas</a>
+<a class="text-sm font-medium transition-colors hover:text-white/80" href="#">Sobre</a>
+</nav>
+</div>
+</header>
+
+<main class="flex-1">
+<div class="container mx-auto flex max-w-6xl flex-col px-4 py-8 sm:py-12">
+<div class="flex flex-col gap-3 pb-8">
+<h1 class="text-4xl font-black tracking-tighter text-text-main dark:text-white sm:text-5xl">Arquivo do Diário</h1>
+<p class="text-base font-normal text-text-secondary">Explore todas as aulas e experiências documentadas, filtrando por categoria.</p>
+</div>
+<div class="flex flex-wrap gap-2 py-4">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 px-4 text-sm font-semibold text-primary">Todos</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-gray-700 px-4 text-sm font-medium text-text-main dark:text-white transition-colors hover:bg-gray-300 dark:hover:bg-gray-600">Módulo 1</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-gray-700 px-4 text-sm font-medium text-text-main dark:text-white transition-colors hover:bg-gray-300 dark:hover:bg-gray-600">Técnicas de Ensino</button>
+</div>
+<div class="grid grid-cols-1 gap-6 py-8 sm:grid-cols-2 lg:grid-cols-3">
+<a class="group flex flex-col overflow-hidden rounded-lg bg-surface dark:bg-gray-800 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1" href="post.html">
+<div class="aspect-video w-full overflow-hidden bg-gray-200">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A modern office setting with people collaborating around a table with laptops." src="https://picsum.photos/400/225?random=4"/>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<span class="mb-2 inline-block rounded-full bg-secondary/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">Módulo 1</span>
+<h3 class="text-lg font-bold leading-tight text-text-main dark:text-white group-hover:text-primary">Implementando Aprendizagem Baseada em Projetos</h3>
+<p class="mt-2 flex-1 text-sm text-text-secondary">Nesta aula, exploramos os conceitos fundamentais de variáveis e como os dados são armazenados...</p>
+<p class="mt-4 text-xs font-medium text-text-secondary/80">25 de Outubro de 2023</p>
+</div>
+</a>
+<a class="group flex flex-col overflow-hidden rounded-lg bg-surface dark:bg-gray-800 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1" href="#">
+<div class="aspect-video w-full overflow-hidden bg-gray-200">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Close-up of a person's hands typing on a laptop keyboard, with code visible on the screen." src="https://picsum.photos/400/225?random=5"/>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<span class="mb-2 inline-block rounded-full bg-secondary/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">Módulo 1</span>
+<h3 class="text-lg font-bold leading-tight text-text-main dark:text-white group-hover:text-primary">Aula 02: Estruturas de Repetição</h3>
+<p class="mt-2 flex-1 text-sm text-text-secondary">Aprenda como utilizar 'for' e 'while' para otimizar tarefas repetitivas no seu código.</p>
+<p class="mt-4 text-xs font-medium text-text-secondary/80">18 de Outubro de 2023</p>
+</div>
+</a>
+<a class="group flex flex-col overflow-hidden rounded-lg bg-surface dark:bg-gray-800 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1" href="#">
+<div class="aspect-video w-full overflow-hidden bg-gray-200">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A complex diagram of data structures sketched on a whiteboard." src="https://picsum.photos/400/225?random=6"/>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<span class="mb-2 inline-block rounded-full bg-secondary/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">Módulo 1</span>
+<h3 class="text-lg font-bold leading-tight text-text-main dark:text-white group-hover:text-primary">Aula 03: Estruturas de Dados</h3>
+<p class="mt-2 flex-1 text-sm text-text-secondary">Uma visão geral sobre arrays, listas e suas aplicações práticas no desenvolvimento de software.</p>
+<p class="mt-4 text-xs font-medium text-text-secondary/80">11 de Outubro de 2023</p>
+</div>
+</a>
+</div>
+<div class="flex items-center justify-center p-4">
+<a class="flex size-10 items-center justify-center text-text-secondary transition-colors hover:text-text-main" href="#">
+<span class="material-symbols-outlined">chevron_left</span>
+</a>
+<a class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-sm font-bold text-primary" href="#">1</a>
+<a class="flex size-10 items-center justify-center rounded-full text-sm font-medium text-text-main dark:text-white transition-colors hover:bg-gray-200" href="#">2</a>
+<a class="flex size-10 items-center justify-center text-text-secondary transition-colors hover:text-text-main" href="#">
+<span class="material-symbols-outlined">chevron_right</span>
+</a>
+</div>
+</div>
+</main>
+
+<footer class="w-full bg-surface dark:bg-dark-bg/50">
+<div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+<p class="text-center text-sm text-text-secondary dark:text-gray-400">© 2024 Diário de Bordo do Ensino IFPR. Todos os direitos reservados.</p>
+</div>
+</footer>
+
+</div>
+</body>
+</html>

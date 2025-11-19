@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artigo: Aprendizagem Baseada em Projetos | Diário de Bordo IFPR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#007D40",
+              "secondary": "#4CAF50",
+              "background-light": "#F5F5F5",
+              "surface": "#FFFFFF",
+              "text-main": "#212121",
+              "text-secondary": "#616161",
+              "subtle-light": "#F5F5F5",
+              "subtle-dark": "#1e293b",
+              "accent-dark": "#4ade80",
+              "dark-bg": "#0f172a",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"],
+              "serif": ["Lora", "serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+    }
+</script>
+<style>
+    .font-serif { font-family: 'Lora', serif; }
+    /* Ajustes para o estilo do corpo do artigo */
+    .prose h2 { margin-top: 3rem !important; margin-bottom: 1rem !important; }
+    .prose h3 { margin-top: 2.5rem !important; margin-bottom: 1rem !important; }
+    .prose ul li { position: relative; padding-left: 1.5rem; }
+    .prose ul li:before { content: '•'; position: absolute; left: 0; color: #4CAF50; font-weight: bold; }
+</style>
+</head>
+<body class="bg-surface dark:bg-dark-bg font-display text-text-main dark:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+
+<header class="bg-primary text-white">
+<div class="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center gap-4">
+<div class="size-6 text-white">
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.53 7.94a1.5 1.5 0 0 0-1.06-.44H12.75l-1.63-3.26a1.5 1.5 0 0 0-1.34-.84H4.5A1.5 1.5 0 0 0 3 4.9v14.2a1.5 1.5 0 0 0 1.5 1.5h16.5a1.5 1.5 0 0 0 1.5-1.5v-10c0-.4-.16-.78-.47-1.06zM15 15.4h-3v3H9v-3H6v-3h3v-3h3v3h3v3z"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Diário de Bordo IFPR</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium transition-colors hover:text-white/80" href="index.html">Home</a>
+<a class="text-sm font-medium transition-colors hover:text-white/80" href="aulas.html">Aulas</a>
+<a class="text-sm font-medium transition-colors hover:text-white/80" href="#">Sobre</a>
+</nav>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-4xl flex-1 px-4 sm:px-6 lg:px-8">
+
+<article>
+<div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[320px] sm:min-h-[400px] mb-8" data-alt="Sala de aula com alunos engajados em uma atividade prática." style='background-image: url("https://picsum.photos/1000/500?random=7");'></div>
+<h1 class="font-display text-text-main dark:text-white tracking-tight text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-left pb-3">Implementando Aprendizagem Baseada em Projetos no Ensino Médio</h1>
+<p class="text-text-secondary/70 text-sm font-normal leading-normal pb-8">Por Prof. Joana da Silva - Publicado em 15 de Agosto de 2024</p>
+<div class="prose max-w-none font-serif text-text-main dark:text-white text-lg leading-relaxed space-y-6">
+<p>Este é o parágrafo introdutório do artigo, descrevendo o contexto inicial da experiência de ensino. O objetivo deste diário de bordo é documentar a transição de um modelo de aula expositiva para uma abordagem de Aprendizagem Baseada em Projetos (PBL) com a turma do 2º ano de Informática, focando em como essa mudança impactou o engajamento e a autonomia dos estudantes.</p>
+<h2 class="font-display text-2xl font-bold text-primary dark:text-accent-dark !mt-12 !mb-4">O Desafio Inicial</h2>
+<p>O principal desafio era quebrar a passividade dos alunos. As aulas tradicionais, embora ricas em conteúdo, geravam pouco envolvimento prático. A hipótese era que, ao colocar os estudantes como protagonistas de um projeto real, com entregas concretas, o interesse e a retenção do conhecimento seriam significativamente maiores.</p>
+<blockquote class="border-l-4 border-primary dark:border-accent-dark bg-subtle-light dark:bg-subtle-dark p-6 rounded-md my-8 not-italic">
+<p class="font-display text-base font-medium text-text-main dark:text-white">"A chave não era apenas ensinar a programar, mas inspirá-los a resolver problemas usando a programação como ferramenta."</p>
+</blockquote>
+<h3 class="font-display text-xl font-bold text-primary dark:text-accent-dark !mt-10 !mb-4">Etapas do Projeto</h3>
+<p>A implementação foi dividida em fases claras para guiar os alunos ao longo do semestre. A estrutura foi pensada para construir o conhecimento de forma incremental:</p>
+<ul class="space-y-3 list-none">
+<li class="pl-2 before:content-['•'] before:absolute before:left-0 before:text-secondary dark:before:text-accent-dark before:font-bold">Definição do Problema: Brainstorming em grupo para identificar um problema real da escola ou da comunidade que pudesse ser resolvido com um software simples.</li>
+<li class="pl-2 before:content-['•'] before:absolute before:left-0 before:text-secondary dark:before:text-accent-dark before:font-bold">Planejamento e Escopo: Criação de um documento simples definindo os objetivos, funcionalidades essenciais e o cronograma do projeto.</li>
+<li class="pl-2 before:content-['•'] before:absolute before:left-0 before:text-secondary dark:before:text-accent-dark before:font-bold">Desenvolvimento e Sprints: Ciclos de desenvolvimento de duas semanas, com apresentações parciais do progresso para a turma.</li>
+<li class="pl-2 before:content-['•'] before:absolute before:left-0 before:text-secondary dark:before:text-accent-dark before:font-bold">Apresentação Final: Demonstração do projeto final para uma banca de professores e colegas.</li>
+</ul>
+<h2 class="font-display text-2xl font-bold text-primary dark:text-accent-dark !mt-12 !mb-4">Resultados e Reflexões</h2>
+<p>O resultado superou as expectativas. O nível de engajamento aumentou drasticamente, e os alunos demonstraram uma notável capacidade de auto-organização e colaboração. Os projetos finais, embora simples, eram funcionais e demonstravam uma compreensão profunda dos conceitos ensinados. A principal lição aprendida foi que, ao confiar na capacidade dos alunos e dar-lhes autonomia, o processo de aprendizagem se torna mais significativo e duradouro.</p>
+</div>
+</article>
+
+</div>
+</main>
+<footer class="w-full bg-surface dark:bg-dark-bg/50">
+<div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+<p class="text-center text-sm text-text-secondary dark:text-gray-400">© 2024 Diário de Bordo do Ensino IFPR. Todos os direitos reservados.</p>
+</div>
+</footer>
+</div>
+</body>
+</html>
