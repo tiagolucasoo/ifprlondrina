@@ -8,7 +8,7 @@ const Inicial = ({ navigate }) => (
                 <h1>Compartilhando as jornadas do ensino, uma aula de cada vez.</h1>
                 <p>Explore reflexões, estratégias e experiências reais da sala de aula.</p>
             </div>
-            <a href="#" className="cta-button" onClick={() => navigate('/aulas')}>
+            <a href="#" className="cta-button" onClick={(e) => { e.preventDefault(); navigate('/aulas'); }}>
                 Ver Todas as Aulas
             </a>
         </section>
@@ -17,7 +17,7 @@ const Inicial = ({ navigate }) => (
             <h2 className="section-title">Registros Recentes</h2>
             <div className="cards-grid">
                 {lessons.slice(0, 3).map(lesson => (
-                    <a key={lesson.id} href="#" onClick={() => navigate(`/post/${lesson.id}`)} className="home-card">
+                    <a key={lesson.id} href="#" onClick={(e) => { e.preventDefault(); navigate(`/post/${lesson.id}`); }} className="home-card">
                         <div className="home-card-image" style={{ backgroundImage: `url(${lesson.img})` }}></div>
                         <div className="home-card-content">
                             <div>

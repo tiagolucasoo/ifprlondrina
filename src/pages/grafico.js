@@ -25,7 +25,7 @@ const Grafico = ({ navigate }) => (
             <div className="dashboard-cta">
                 <h4>Quer ver como chegamos a esses resultados?</h4>
                 <p>Explore os detalhes de cada experiência de aula em nosso arquivo completo.</p>
-                <a href="#" className="cta-button" onClick={() => navigate('/aulas')}>
+                <a href="#" className="cta-button" onClick={(e) => { e.preventDefault(); navigate('/aulas'); }}>
                     Ver Todas as Aulas
                 </a>
             </div>

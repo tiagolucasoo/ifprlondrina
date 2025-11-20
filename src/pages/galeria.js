@@ -20,7 +20,7 @@ const Galeria = ({ navigate }) => (
             <div className="gallery-cta">
                 <h4>Quer saber mais sobre o contexto de cada foto?</h4>
                 <p>Os posts do nosso diário detalham as atividades e aprendizados de cada momento.</p>
-                <a href="#" className="cta-button" onClick={() => navigate('/aulas')}>
+                <a href="#" className="cta-button" onClick={(e) => { e.preventDefault(); navigate('/aulas'); }}>
                     Ver Todas as Experiências
                 </a>
             </div>

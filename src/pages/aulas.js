@@ -23,18 +23,18 @@ const Aulas = ({ navigate }) => {
                 <div className="filters">
                     {categories.map(cat => (
                         <button 
-                            key={cat} 
-                            onClick={() => setFilter(cat)}
-                            className={filter === cat ? 'active' : ''}
-                        >
+                                key={cat} 
+                                onClick={() => setFilter(cat)}
+                                className={filter === cat ? 'active' : ''}
+                            >
                             {cat}
                         </button>
                     ))}
                 </div>
 
                 <div className="lessons-list">
-                    {filteredLessons.map(lesson => (
-                        <a key={lesson.id} href="#" onClick={() => navigate(`/post/${lesson.id}`)} className="lesson-card">
+                        {filteredLessons.map(lesson => (
+                            <a key={lesson.id} href="#" onClick={(e) => { e.preventDefault(); navigate(`/post/${lesson.id}`); }} className="lesson-card">
                             <img src={lesson.img} alt={lesson.title} className="lesson-card-image" />
                             <div className="lesson-card-content">
                                 <span>{lesson.category}</span>

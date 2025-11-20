@@ -34,7 +34,7 @@ const Main = ({ currentPage, navigate }) => {
                 <div className="container" style={{paddingTop: '50px'}}>
                     <h2>Página Não Encontrada</h2>
                     <p>Caminho: {currentPage}</p>
-                    <a href="#" className="cta-button" onClick={() => navigate('/')}>Voltar para Home</a>
+                    <a href="#" className="cta-button" onClick={(e) => { e.preventDefault(); navigate('/'); }}>Voltar para Home</a>
                 </div>
             );
     }

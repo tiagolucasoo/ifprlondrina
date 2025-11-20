@@ -18,7 +18,7 @@ const Header = ({ currentPage, navigate }) => {
                 <div className="header-content">
                     <div className="logo-area">
                         {/* Ao clicar na logo, volta para a página inicial */}
-                        <a href="#" onClick={() => navigate('/')}>
+                        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
                             <img src="logo.png" alt="Logo IFPR" className="ifpr-logo" /> 
                         </a>
                         <div className="titles">
@@ -31,7 +31,7 @@ const Header = ({ currentPage, navigate }) => {
                             <a 
                                 key={item.path} 
                                 href="#" 
-                                onClick={() => navigate(item.path)}
+                                onClick={(e) => { e.preventDefault(); navigate(item.path); }}
                                 className={isActive(item.path) ? 'active' : ''}
                             >
                                 {item.name}
