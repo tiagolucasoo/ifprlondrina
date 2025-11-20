@@ -1,0 +1,118 @@
+/* CSS mínimo e válido para restaurar build e layout básico */
+/* Podemos iterar e estilizar mais depois, se quiser. */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root{
+  --color-primary: #007D40;
+  --color-secondary: #4CAF50;
+  --color-surface: #ffffff;
+  --color-background: #f5f5f5;
+  --color-text: #212121;
+  --color-muted: #616161;
+  --font-sans: 'Lexend', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  --font-serif: 'Lora', serif;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:var(--font-sans);background:var(--color-background);color:var(--color-text);-webkit-font-smoothing:antialiased}
+
+/* Layout container */
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+/* Header */
+header{background:var(--color-surface);border-bottom:1px solid rgba(0,0,0,0.06)}
+.header-content{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.logo-area{display:flex;align-items:center;gap:12px}
+.titles h1{margin:0;font-size:1.25rem;color:var(--color-primary)}
+.titles h2{margin:0;font-size:.95rem;color:var(--color-muted);font-weight:500}
+nav{display:flex;gap:8px}
+nav a{color:var(--color-muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+nav a.active,nav a:hover{background:var(--color-primary);color:white}
+
+main{padding:28px 0}
+
+/* Cards grid (home) */
+.cards-grid{display:flex;flex-wrap:wrap;gap:16px}
+.cards-grid a,.home-card{display:flex;width:calc(33.333% - 10.66px);background:var(--color-surface);border-radius:8px;overflow:hidden;text-decoration:none;color:inherit}
+.card-image,.home-card-image{width:40%;min-height:110px;background-size:cover;background-position:center}
+.card-content,.home-card-content{padding:12px;width:60%}
+
+/* Ajustes para página de Aulas */
+.lessons-list{display:flex;flex-direction:column;gap:12px}
+.lesson-card{display:flex;gap:12px;background:var(--color-surface);padding:12px;border-radius:8px;align-items:center;text-decoration:none;color:inherit}
+.lesson-card-image{width:300px;height:180px;object-fit:cover;flex-shrink:0;border-radius:6px}
+
+/* CTA (botão principal usado na inicial) */
+.cta-button{display:inline-block;background:var(--color-primary);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+.cta-button:hover{opacity:0.95}
+
+/* Post */
+.post-article{max-width:800px;margin:0 auto;padding:20px}
+.post-image{width:100%;height:320px;object-fit:cover;border-radius:8px;margin-bottom:12px}
+.post-meta{display:flex;gap:12px;color:var(--color-muted);font-size:.95rem;margin-bottom:10px}
+
+/* Galeria grid */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.gallery-item{height:220px;overflow:hidden;border-radius:8px}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Aulas list */
+.filters{display:flex;gap:8px;margin-bottom:18px}
+.lesson-card{display:flex;gap:12px;background:var(--color-surface);padding:12px;border-radius:8px;align-items:center}
+
+/* Equipe */
+.team-grid{display:flex;flex-wrap:wrap;gap:16px}
+.team-member{width:calc(33.333% - 10.66px);background:var(--color-surface);padding:12px;border-radius:8px;text-align:center}
+.team-member img{width:100px;height:100px;border-radius:50%;object-fit:cover}
+
+/* Footer */
+footer{border-top:1px solid rgba(0,0,0,0.05);padding:12px 0;text-align:center;color:var(--color-muted)}
+
+/* Responsividade */
+@media (max-width:900px){
+  .cards-grid a,.home-card{width:calc(50% - 8px)}
+  .team-member{width:calc(50% - 8px)}
+}
+@media (max-width:600px){
+  .cards-grid a,.home-card{width:100%}
+  .header-content{flex-direction:column;align-items:flex-start}
+  .titles h1{font-size:1.1rem}
+}
+
+/* --- DASHBOARD (grafico) - estilos --- */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;padding-top:16px}
+.metric-card{background:var(--color-surface);border-radius:10px;padding:20px;box-shadow:0 6px 20px rgba(16,24,40,0.06);text-align:center;transition:transform .18s ease,box-shadow .18s ease}
+.metric-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 24px 48px rgba(16,24,40,0.12);cursor:pointer}
+.metric-icon-wrapper{width:56px;height:56px;border-radius:50%;background:var(--color-primary);color:var(--color-surface);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.metric-icon-wrapper .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 500; font-size:28px}
+.metric-card .value{font-size:2.6rem;font-weight:700;color:var(--color-dark-bg);margin-bottom:6px;line-height:1}
+.metric-card h3{font-size:1rem;color:var(--color-primary);margin:0 0 6px}
+.metric-card-desc{font-size:.92rem;color:var(--color-muted)}
+
+/* End of minimal stylesheet */
+
+/* ===== Correções: botões de filtro e hover do "Ler Post" ===== */
+.filters button{
+  background:var(--color-surface);
+  color:var(--color-muted);
+  border:1px solid rgba(0,0,0,0.08);
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all .14s ease;
+}
+.filters button:hover{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
+.filters button.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
+
+.card-action span{display:inline-block;color:var(--color-primary);padding:6px 10px;border-radius:6px;border:1px solid var(--color-primary);transition:all .14s ease;font-weight:600}
+.cards-grid a:hover .card-action span,.home-card:hover .card-action span{background:var(--color-primary);color:#fff;transform:translateY(-2px)}
+.cards-grid a:hover{transform:translateY(-6px);box-shadow:0 18px 30px rgba(16,24,40,0.08)}
+
+/* Pequeno ajuste para tornar o link do card visualmente clicável */
+.cards-grid a .card-content{display:flex;flex-direction:column;justify-content:space-between}
+
+/* Fim das correções */
