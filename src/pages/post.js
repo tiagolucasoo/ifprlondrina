@@ -1,9 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPostContent } from '../utils/AppConfig.js';
+import { fetchPostContent } from '../utils/supabaseClient.js';
 
 const Post = ({ postId }) => {
-    // Simula a busca do post, dependendo do postId (extraído da rota)
-    const post = getPostContent(postId);
+    const [post, setPost] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        let mounted = true;
+
+        const load = async () => {
+            setLoading(true);
+            // tenta buscar no Supabase primeiro
+            try {
+                const idNum = Number(postId);
+                const remote = await fetchPostContent(idNum);
+                if (remote && mounted) {
+                    // mapeia os campos retornados para o shape esperado
+                    const mapped = {
+                        id: remote.id,
+                        title: remote.title,
+                        author: remote.author || 'Equipe IFPR',
+                        date: remote.published_at || remote.date || '',
+                        image: remote.image_url || remote.image || '',
+                        // se o conteúdo vier em HTML, usa dangerouslySetInnerHTML no render;
+                        // caso contrário, tenta usar texto/summary
+                        content: remote.content_html || remote.content || remote.excerpt || '',
+                    };
+                    setPost(mapped);
+                    setLoading(false);
+                    return;
+                }
+            } catch (err) {
+                console.error('Erro ao buscar post remoto:', err);
+            }
+
+            // fallback para conteúdo local mockado
+            const local = getPostContent(postId);
+            if (mounted) {
+                setPost(local);
+                setLoading(false);
+            }
+        };
+
+        load();
+        return () => { mounted = false; };
+    }, [postId]);
+
+    if (loading && !post) {
+        return (
+            <div className="container">
+                <section className="main-section">
+                    <div className="post-article">
+                        <h1>Carregando...</h1>
+                    </div>
+                </section>
+            </div>
+        );
+    }
 
     if (!post) {
         return (
@@ -22,8 +76,9 @@ const Post = ({ postId }) => {
         <div className="container">
             <section className="main-section">
                 <article className="post-article">
-                    {/* Imagem como elemento <img> para melhor compatibilidade e acessibilidade */}
-                    <img src={post.image} alt={`Imagem relacionada ao post: ${post.title}`} className="post-image" />
+                    {post.image ? (
+                        <img src={post.image} alt={`Imagem relacionada ao post: ${post.title}`} className="post-image" />
+                    ) : null}
 
                     <div className="post-meta">
                         <span className="post-tag">Por {post.author}</span>
@@ -33,8 +88,12 @@ const Post = ({ postId }) => {
                     <h1>{post.title}</h1>
 
                     <div className="post-content">
-                        {/* Renderiza o conteúdo JSX mockado */}
-                        {post.content}
+                        {/* Se content for string HTML do Supabase, renderiza com dangerouslySetInnerHTML */}
+                        {typeof post.content === 'string' ? (
+                            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                        ) : (
+                            post.content
+                        )}
                     </div>
                 </article>
             </section>

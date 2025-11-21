@@ -19,7 +19,7 @@ const Header = ({ currentPage, navigate }) => {
                     <div className="logo-area">
                         {/* Ao clicar na logo, volta para a página inicial */}
                         <a href="#" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
-                            <img src="logo.png" alt="Logo IFPR" className="ifpr-logo" /> 
+                            <img src="/logo.png" alt="Logo IFPR" className="ifpr-logo" /> 
                         </a>
                         <div className="titles">
                             <h1>Extensão IFPR 2023 - 2026</h1>

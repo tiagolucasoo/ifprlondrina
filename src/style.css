@@ -116,3 +116,14 @@ footer{border-top:1px solid rgba(0,0,0,0.05);padding:12px 0;text-align:center;co
 .cards-grid a .card-content{display:flex;flex-direction:column;justify-content:space-between}
 
 /* Fim das correções */
+
+/* Botão LinkedIn (versão compacta parecida com CTA) */
+.linkedin-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;background:var(--color-primary);color:var(--color-surface);border-radius:8px;font-weight:600;text-decoration:none}
+.linkedin-btn svg{width:1rem;height:1rem;color:var(--color-surface)}
+.linkedin-btn:hover{background:var(--color-secondary);transform:translateY(-2px)}
+
+/* Email button style */
+.email-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;background:transparent;color:var(--color-primary);border-radius:8px;border:1px solid rgba(0,0,0,0.06);text-decoration:none;font-weight:600}
+.email-btn .material-symbols-outlined{font-size:1rem}
+.email-btn .email-text{font-size:0.92rem;color:var(--color-text);}
+.email-btn:hover{background:var(--color-subtle-light);transform:translateY(-2px)}
