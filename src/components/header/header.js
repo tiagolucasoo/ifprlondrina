@@ -22,8 +22,8 @@ const Header = ({ currentPage, navigate }) => {
                             <img src="/logo.png" alt="Logo IFPR" className="ifpr-logo" /> 
                         </a>
                         <div className="titles">
-                            <h1>Extensão IFPR 2023 - 2026</h1>
-                            <h2>Empreendedorismo em inglês</h2>
+                            <h1>Extensão IFPR  •  Turma 2023</h1>
+                            <h2>Empreendedorismo em Inglês</h2>
                         </div>
                     </div>
                     <nav>

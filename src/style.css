@@ -78,9 +78,28 @@ footer{border-top:1px solid rgba(0,0,0,0.05);padding:12px 0;text-align:center;co
   .team-member{width:calc(50% - 8px)}
 }
 @media (max-width:600px){
-  .cards-grid a,.home-card{width:100%}
+  .cards-grid a,.home-card{width:100%;margin-bottom: 16px;}
+  .lesson-card-image{width:100%;height:200px;max-width: none;}
+  .team-member{width:100%}
   .header-content{flex-direction:column;align-items:flex-start}
   .titles h1{font-size:1.1rem}
+}
+
+/* Ajustes específicos para a listagem de aulas e paginação */
+.lesson-card-content{width:100%}
+.lesson-card .lesson-card-content span{display:inline-block;padding:6px 8px;background:rgba(0,0,0,0.04);border-radius:6px;font-size:.85rem;color:var(--color-muted);margin-bottom:6px}
+.lesson-card .lesson-card-content h3{margin:0 0 6px;font-size:1.05rem;line-height:1.2;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;text-overflow:ellipsis}
+.lesson-card .lesson-card-content p{margin:0;color:var(--color-muted);display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+.pagination{display:flex;gap:8px;justify-content:center;margin-top:18px}
+.pagination a{padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--color-muted);border:1px solid rgba(0,0,0,0.06)}
+.pagination a.active,.pagination a:hover{background:var(--color-primary);color:white;border-color:var(--color-primary)}
+
+@media (max-width:600px){
+  .lesson-card{flex-direction:column;align-items:flex-start}
+  .lesson-card-image{width:100%;height:200px;max-width:none;border-radius:6px}
+  .lesson-card-content{width:100%}
+  .pagination a{padding:6px 8px}
 }
 
 /* --- DASHBOARD (grafico) - estilos --- */
@@ -89,6 +108,7 @@ footer{border-top:1px solid rgba(0,0,0,0.05);padding:12px 0;text-align:center;co
 .metric-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 24px 48px rgba(16,24,40,0.12);cursor:pointer}
 .metric-icon-wrapper{width:56px;height:56px;border-radius:50%;background:var(--color-primary);color:var(--color-surface);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
 .metric-icon-wrapper .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 500; font-size:28px}
+.metric-icon-wrapper img.metric-icon-img{width:60%;height:60%;object-fit:contain;display:block;border-radius:6px}
 .metric-card .value{font-size:2.6rem;font-weight:700;color:var(--color-dark-bg);margin-bottom:6px;line-height:1}
 .metric-card h3{font-size:1rem;color:var(--color-primary);margin:0 0 6px}
 .metric-card-desc{font-size:.92rem;color:var(--color-muted)}
@@ -127,3 +147,18 @@ footer{border-top:1px solid rgba(0,0,0,0.05);padding:12px 0;text-align:center;co
 .email-btn .material-symbols-outlined{font-size:1rem}
 .email-btn .email-text{font-size:0.92rem;color:var(--color-text);}
 .email-btn:hover{background:var(--color-subtle-light);transform:translateY(-2px)}
+
+.email-btn{
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+}
+.email-text{
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-align: center;
+  font-size: 0.85rem;
+}

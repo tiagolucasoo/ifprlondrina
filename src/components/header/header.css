@@ -79,4 +79,16 @@ nav a:hover, nav a:focus {
     .header-container {
         padding: 0 12px;
     }
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+    }
+    nav a {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        background-color: rgba(0,0,0,0.03);
+        margin-bottom: 4px;
+    }
 }

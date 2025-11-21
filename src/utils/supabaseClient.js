@@ -111,3 +111,28 @@ export async function fetchGallery() {
     }));
     return normalized;
 }
+
+/**
+ * Busca as métricas/dados do dashboard na tabela 'metrics'.
+ * Espera objetos com os campos: title, value, icon, desc
+ */
+export async function fetchMetrics() {
+    let { data: metrics, error } = await supabase
+        .from('metrics')
+        .select('*')
+        .order('id', { ascending: true });
+
+    if (error) {
+        console.error('Erro ao buscar métricas:', error);
+        return [];
+    }
+
+    // Normaliza campos comuns
+    const normalized = metrics.map(m => ({
+        title: m.title || m.name || '',
+        value: m.value || m.metric_value || '',
+        icon: m.icon || m.icon_url || m.img || m.image || '',
+        desc: m.desc || m.description || m.info || ''
+    }));
+    return normalized;
+}
