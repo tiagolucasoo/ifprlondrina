@@ -1,15 +1,19 @@
-import React, { useState, useMemo, useEffect } from 'react'; // <--- Adicionado useEffect
-import { lessons } from '../utils/AppConfig.js'; // 'lessons' agora é a função assíncrona fetchLessons
+import React, { useState, useMemo, useEffect } from 'react';
+import { lessons } from '../utils/AppConfig.js';
 
 const Aulas = ({ navigate }) => {
-    const [allLessons, setAllLessons] = useState([]); // <--- Novo estado para todas as aulas
+    const [allLessons, setAllLessons] = useState([]);
     const [filter, setFilter] = useState('Todos');
     const [loading, setLoading] = useState(true);
+    
+    // 1. NOVO: Estado para paginação
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6; // Quantidade de aulas por página
 
     useEffect(() => {
         const loadAllLessons = async () => {
             try {
-                const fetchedLessons = await lessons(); // Chama a função assíncrona
+                const fetchedLessons = await lessons();
                 setAllLessons(fetchedLessons);
             } catch (error) {
                 console.error("Erro ao carregar todas as aulas: ", error);
@@ -21,15 +25,29 @@ const Aulas = ({ navigate }) => {
         loadAllLessons();
     }, []);
 
-    // Determina categorias únicas para os botões de filtro, agora a partir de 'allLessons'
     const categories = useMemo(() => {
         return ['Todos', ...new Set(allLessons.map(l => l.category))];
     }, [allLessons]);
 
-    // Filtra as aulas baseado no estado de 'filter'
     const filteredLessons = useMemo(() => {
         return filter === 'Todos' ? allLessons : allLessons.filter(l => l.category === filter);
-    }, [filter, allLessons]); // Depende de 'allLessons'
+    }, [filter, allLessons]);
+
+    // 2. NOVO: Resetar para página 1 quando trocar o filtro
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filter]);
+
+    // 3. NOVO: Lógica para pegar apenas as aulas da página atual
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentLessons = filteredLessons.slice(indexOfFirstItem, indexOfLastItem);
+    
+    // 4. NOVO: Calcular total de páginas
+    const totalPages = Math.ceil(filteredLessons.length / itemsPerPage);
+
+    // Função para mudar de página
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className="container">
@@ -39,7 +57,6 @@ const Aulas = ({ navigate }) => {
                     <p>Explore todas as aulas e experiências documentadas, filtrando por categoria.</p>
                 </div>
                 
-                {/* Filtros */}
                 <div className="filters">
                     {categories.map(cat => (
                         <button 
@@ -52,13 +69,13 @@ const Aulas = ({ navigate }) => {
                     ))}
                 </div>
 
-                {/* Lista de Aulas */}
-                {loading && <p>Carregando arquivo de aulas...</p>} {/* <--- Indicador de carregamento */}
-                {!loading && filteredLessons.length === 0 && <p>Nenhuma aula encontrada para a categoria selecionada.</p>}
+                {loading && <p>Carregando arquivo de aulas...</p>}
+                {!loading && currentLessons.length === 0 && <p>Nenhuma aula encontrada.</p>}
 
                 {!loading && (
                     <div className="lessons-list">
-                        {filteredLessons.map(lesson => (
+                        {/* 5. ALTERADO: Usar 'currentLessons' em vez de 'filteredLessons' */}
+                        {currentLessons.map(lesson => (
                             <a key={lesson.id} href="#" onClick={(e) => { e.preventDefault(); navigate(`/post/${lesson.id}`); }} className="lesson-card">
                                 <img src={lesson.image || lesson.img} alt={lesson.title} className="lesson-card-image" />
                                 <div className="lesson-card-content">
@@ -72,15 +89,36 @@ const Aulas = ({ navigate }) => {
                     </div>
                 )}
                 
+                {/* 6. ALTERADO: Renderização Dinâmica da Paginação */}
+                {totalPages > 1 && (
+                    <div className="pagination">
+                        {/* Botão Anterior (opcional, pode remover se quiser simplificar) */}
+                        <a href="#" 
+                           onClick={(e) => { e.preventDefault(); if(currentPage > 1) paginate(currentPage - 1); }}
+                           style={{ opacity: currentPage === 1 ? 0.5 : 1, pointerEvents: currentPage === 1 ? 'none' : 'auto' }}>
+                           <span className="material-symbols-outlined">chevron_left</span>
+                        </a>
 
-                {/* Paginação Mockada */}
-                <div className="pagination">
-                    <a href="#" className="active" onClick={(e) => e.preventDefault()}>1</a>
-                    <a href="#" onClick={(e) => e.preventDefault()}>2</a>
-                    <a href="#" onClick={(e) => e.preventDefault()}>
-                        <span className="material-symbols-outlined">chevron_right</span>
-                    </a>
-                </div>
+                        {/* Números das páginas */}
+                        {Array.from({ length: totalPages }, (_, i) => (
+                            <a 
+                                key={i + 1} 
+                                href="#" 
+                                onClick={(e) => { e.preventDefault(); paginate(i + 1); }}
+                                className={currentPage === i + 1 ? 'active' : ''}
+                            >
+                                {i + 1}
+                            </a>
+                        ))}
+
+                        {/* Botão Próximo */}
+                        <a href="#" 
+                           onClick={(e) => { e.preventDefault(); if(currentPage < totalPages) paginate(currentPage + 1); }}
+                           style={{ opacity: currentPage === totalPages ? 0.5 : 1, pointerEvents: currentPage === totalPages ? 'none' : 'auto' }}>
+                            <span className="material-symbols-outlined">chevron_right</span>
+                        </a>
+                    </div>
+                )}
 
             </section>
         </div>
