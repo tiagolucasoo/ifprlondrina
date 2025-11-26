@@ -350,7 +350,6 @@ export const globalStyles = `
         display: flex;
         gap: 10px;
         margin-bottom: 30px;
-        flex-wrap: wrap;
     }
     .filters button {
         background: var(--color-surface);
