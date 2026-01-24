@@ -1,52 +1,33 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { lessons } from '../utils/AppConfig.js';
+import aulas from '../data/aulas.json'; // Importação direta do JSON
+import Footer from '../components/footer/footer';
 
 const Aulas = ({ navigate }) => {
-    const [allLessons, setAllLessons] = useState([]);
     const [filter, setFilter] = useState('Todos');
-    const [loading, setLoading] = useState(true);
-    
-    // 1. NOVO: Estado para paginação
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6; // Quantidade de aulas por página
+    const itemsPerPage = 6;
 
-    useEffect(() => {
-        const loadAllLessons = async () => {
-            try {
-                const fetchedLessons = await lessons();
-                setAllLessons(fetchedLessons);
-            } catch (error) {
-                console.error("Erro ao carregar todas as aulas: ", error);
-                setAllLessons([]);
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadAllLessons();
+    // Categorias dinâmicas baseadas no que existe no JSON
+    const categories = useMemo(() => {
+        return ['Todos', ...new Set(aulas.map(l => l.category))];
     }, []);
 
-    const categories = useMemo(() => {
-        return ['Todos', ...new Set(allLessons.map(l => l.category))];
-    }, [allLessons]);
-
+    // Filtra as aulas localmente
     const filteredLessons = useMemo(() => {
-        return filter === 'Todos' ? allLessons : allLessons.filter(l => l.category === filter);
-    }, [filter, allLessons]);
+        return filter === 'Todos' ? aulas : aulas.filter(l => l.category === filter);
+    }, [filter]);
 
-    // 2. NOVO: Resetar para página 1 quando trocar o filtro
+    // Resetar para página 1 quando trocar o filtro
     useEffect(() => {
         setCurrentPage(1);
     }, [filter]);
 
-    // 3. NOVO: Lógica para pegar apenas as aulas da página atual
+    // Lógica de Paginação
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentLessons = filteredLessons.slice(indexOfFirstItem, indexOfLastItem);
-    
-    // 4. NOVO: Calcular total de páginas
     const totalPages = Math.ceil(filteredLessons.length / itemsPerPage);
 
-    // Função para mudar de página
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
@@ -69,58 +50,64 @@ const Aulas = ({ navigate }) => {
                     ))}
                 </div>
 
-                {loading && <p>Carregando arquivo de aulas...</p>}
-                {!loading && currentLessons.length === 0 && <p>Nenhuma aula encontrada.</p>}
+                {currentLessons.length === 0 && <p>Nenhuma aula encontrada.</p>}
 
-                {!loading && (
-                    <div className="lessons-list">
-                        {/* 5. ALTERADO: Usar 'currentLessons' em vez de 'filteredLessons' */}
-                        {currentLessons.map(lesson => (
-                            <a key={lesson.id} href="#" onClick={(e) => { e.preventDefault(); navigate(`/post/${lesson.id}`); }} className="lesson-card">
-                                <img src={lesson.image || lesson.img} alt={lesson.title} className="lesson-card-image" />
-                                <div className="lesson-card-content">
-                                    <span>{lesson.category}</span>
-                                    <h3>{lesson.title}</h3>
-                                    <p>{lesson.excerpt}</p>
-                                    <p>{lesson.date}</p>
-                                </div>
-                            </a>
-                        ))}
-                    </div>
-                )}
+                <div className="lessons-list">
+                    {currentLessons.map(lesson => (
+                        <div 
+                            key={lesson.id} 
+                            onClick={() => navigate(`/post/${lesson.id}`)} 
+                            className="lesson-card"
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <img 
+                                src={lesson.image_url || lesson.image} 
+                                alt={lesson.title} 
+                                className="lesson-card-image" 
+                            />
+                            <div className="lesson-card-content">
+                                <span>{lesson.category}</span>
+                                <h3>{lesson.title}</h3>
+                                <p>{lesson.excerpt}</p>
+                                <p className="post-date">
+                                    {lesson.published_at ? new Date(lesson.published_at).toLocaleDateString('pt-BR') : ''}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
                 
-                {/* 6. ALTERADO: Renderização Dinâmica da Paginação */}
                 {totalPages > 1 && (
                     <div className="pagination">
-                        {/* Botão Anterior (opcional, pode remover se quiser simplificar) */}
-                        <a href="#" 
-                           onClick={(e) => { e.preventDefault(); if(currentPage > 1) paginate(currentPage - 1); }}
-                           style={{ opacity: currentPage === 1 ? 0.5 : 1, pointerEvents: currentPage === 1 ? 'none' : 'auto' }}>
-                           <span className="material-symbols-outlined">chevron_left</span>
-                        </a>
+                        <button 
+                            onClick={() => paginate(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className="pag-btn"
+                        >
+                            <span className="material-symbols-outlined">chevron_left</span>
+                        </button>
 
-                        {/* Números das páginas */}
                         {Array.from({ length: totalPages }, (_, i) => (
-                            <a 
+                            <button 
                                 key={i + 1} 
-                                href="#" 
-                                onClick={(e) => { e.preventDefault(); paginate(i + 1); }}
+                                onClick={() => paginate(i + 1)}
                                 className={currentPage === i + 1 ? 'active' : ''}
                             >
                                 {i + 1}
-                            </a>
+                            </button>
                         ))}
 
-                        {/* Botão Próximo */}
-                        <a href="#" 
-                           onClick={(e) => { e.preventDefault(); if(currentPage < totalPages) paginate(currentPage + 1); }}
-                           style={{ opacity: currentPage === totalPages ? 0.5 : 1, pointerEvents: currentPage === totalPages ? 'none' : 'auto' }}>
+                        <button 
+                            onClick={() => paginate(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            className="pag-btn"
+                        >
                             <span className="material-symbols-outlined">chevron_right</span>
-                        </a>
+                        </button>
                     </div>
                 )}
-
             </section>
+            <Footer/>
         </div>
     );
 };

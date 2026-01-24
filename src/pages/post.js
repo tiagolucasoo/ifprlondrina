@@ -1,102 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import { getPostContent } from '../utils/AppConfig.js';
-import { fetchPostContent } from '../utils/supabaseClient.js';
+import React from 'react';
+import aulas from '../data/aulas.json';
+import Footer from '../components/footer/footer';
 
 const Post = ({ postId }) => {
-    const [post, setPost] = useState(null);
-    const [loading, setLoading] = useState(true);
+    // Busca o post no JSON local pelo ID
+    const post = aulas.find(item => item.id === Number(postId));
 
-    useEffect(() => {
-        let mounted = true;
-
-        const load = async () => {
-            setLoading(true);
-            // tenta buscar no Supabase primeiro
-            try {
-                const idNum = Number(postId);
-                const remote = await fetchPostContent(idNum);
-                if (remote && mounted) {
-                    // mapeia os campos retornados para o shape esperado
-                    const mapped = {
-                        id: remote.id,
-                        title: remote.title,
-                        author: remote.author || 'Equipe IFPR',
-                        date: remote.published_at || remote.date || '',
-                        image: remote.image_url || remote.image || '',
-                        // se o conteúdo vier em HTML, usa dangerouslySetInnerHTML no render;
-                        // caso contrário, tenta usar texto/summary
-                        content: remote.content_html || remote.content || remote.excerpt || '',
-                    };
-                    setPost(mapped);
-                    setLoading(false);
-                    return;
-                }
-            } catch (err) {
-                console.error('Erro ao buscar post remoto:', err);
-            }
-
-            // fallback para conteúdo local mockado
-            const local = getPostContent(postId);
-            if (mounted) {
-                setPost(local);
-                setLoading(false);
-            }
-        };
-
-        load();
-        return () => { mounted = false; };
-    }, [postId]);
-
-    if (loading && !post) {
-        return (
-            <div className="container">
-                <section className="main-section">
-                    <div className="post-article">
-                        <h1>Carregando...</h1>
-                    </div>
-                </section>
-            </div>
-        );
-    }
-
+    // Se o post não existir (ex: ID errado na URL)
     if (!post) {
         return (
             <div className="container">
                 <section className="main-section">
                     <div className="post-article">
                         <h1>Post não encontrado</h1>
-                        <p>Desculpe, o artigo com o ID {postId} não pôde ser carregado.</p>
+                        <p>Desculpe, o artigo com o ID {postId} não pôde ser localizado.</p>
                     </div>
                 </section>
             </div>
         );
     }
 
+    // Formatação da data (caso queira tratar o formato do banco)
+    const dataFormatada = post.published_at 
+        ? new Date(post.published_at).toLocaleDateString('pt-BR') 
+        : 'Data não disponível';
+
     return (
         <div className="container">
             <section className="main-section">
                 <article className="post-article">
-                    {post.image ? (
-                        <img src={post.image} alt={`Imagem relacionada ao post: ${post.title}`} className="post-image" />
-                    ) : null}
+                    {/* Imagem do Cabeçalho */}
+                    {(post.image_url || post.image) && (
+                        <img 
+                            src={post.image_url || post.image} 
+                            alt={`Imagem de: ${post.title}`} 
+                            className="post-image" 
+                        />
+                    )}
 
                     <div className="post-meta">
-                        <span className="post-tag">Por {post.author}</span>
-                        <span className="post-date">Publicado em {post.date}</span>
+                        <span className="post-tag">Por {post.author || 'Equipe IFPR'}</span>
+                        <span className="post-date"> • {dataFormatada}</span>
                     </div>
 
                     <h1>{post.title}</h1>
 
+                    {/* Conteúdo Renderizado (HTML vindo do JSON) */}
                     <div className="post-content">
-                        {/* Se content for string HTML do Supabase, renderiza com dangerouslySetInnerHTML */}
-                        {typeof post.content === 'string' ? (
+                        {post.content ? (
                             <div dangerouslySetInnerHTML={{ __html: post.content }} />
                         ) : (
-                            post.content
+                            <p>{post.excerpt}</p>
                         )}
                     </div>
                 </article>
             </section>
+            <Footer/>
         </div>
     );
 };

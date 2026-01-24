@@ -1,13 +1,5 @@
 import React from 'react';
 
-import {
-    fetchLessons,
-    fetchTeamMembers,
-    fetchPostContent
-} from './supabaseClient';
-
-// --- DADOS MOCKADOS E ROTAS ---
-
 export const navItems = [
     { name: "Home", path: "/" },
     { name: "Equipe", path: "/equipe" },
@@ -15,101 +7,6 @@ export const navItems = [
     { name: "Galeria", path: "/galeria" },
     { name: "Aulas", path: "/aulas" },
 ];
-
-// export const teamMembers = [
-//     { id: 1, name: "Prof(a). Maria de Souza", role: "Coordenadora do Módulo de Programação", desc: "Especialista em metodologias ativas e apaixonada por transformar conceitos complexos em projetos práticos e acessíveis.", email: "maria.souza@ifpr.edu.br", linkedin: "https://linkedin.com/in/mariadesouza", img: "https://picsum.photos/300/300?random=31" },
-//     { id: 2, name: "Prof. João Carlos", role: "Especialista em Infraestrutura e Redes", desc: "Focado em desmistificar a área de redes e segurança, incentivando a abordagem prática para resolver problemas reais de TI.", email: "joao.carlos@ifpr.edu.br", linkedin: "https://linkedin.com/in/joaocarlos", img: "https://picsum.photos/300/300?random=32" },
-//     { id: 3, name: "Lucas Ferreira", role: "Estudante Colaborador (Documentação)", desc: "Responsável por auxiliar na organização e estruturação dos conteúdos do Diário de Bordo e na curadoria de mídia.", email: "lucas.ferreira@ifpr.edu.br", linkedin: "https://linkedin.com/in/lucasferreira", img: "https://picsum.photos/300/300?random=33" },
-// ];
-
-// export const lessons = [
-//     { id: 1, category: "Módulo 1", title: "Implementando Aprendizagem Baseada em Projetos", excerpt: "Nesta aula, exploramos os conceitos fundamentais de variáveis e como os dados são armazenados...", date: "25 de Outubro de 2023", img: "https://picsum.photos/400/225?random=4" },
-//     { id: 2, category: "Módulo 1", title: "Aula 02: Estruturas de Repetição", excerpt: "Aprenda como utilizar 'for' e 'while' para otimizar tarefas repetitivas no seu código.", date: "18 de Outubro de 2023", img: "https://picsum.photos/400/225?random=5" },
-//     { id: 3, category: "Módulo 1", title: "Aula 03: Estruturas de Dados", excerpt: "Uma visão geral sobre arrays, listas e suas aplicações práticas no desenvolvimento de software.", date: "11 de Outubro de 2023", img: "https://picsum.photos/400/225?random=6" },
-//     { id: 4, category: "Técnicas de Ensino", title: "Gamificação: Engajamento com Desafios", excerpt: "Transforme sua sala de aula em um jogo com pontuações e rankings para motivar os alunos.", date: "05 de Setembro de 2023", img: "https://picsum.photos/400/225?random=7" },
-// ];
-
-export const galleryPhotos = [
-    { id: 11, alt: "Estudantes trabalhando em grupo em um laboratório.", src: "https://picsum.photos/400/400?random=11" },
-    { id: 12, alt: "Diagrama complexo desenhado em um quadro branco.", src: "https://picsum.photos/400/400?random=12" },
-    { id: 13, alt: "Professor(a) interagindo com um aluno durante a aula.", src: "https://picsum.photos/400/400?random=13" },
-    { id: 14, alt: "Robôs programados por alunos em uma bancada de testes.", src: "https://picsum.photos/400/400?random=14" },
-    { id: 15, alt: "Close-up de um código-fonte em um monitor.", src: "https://picsum.photos/400/400?random=15" },
-    { id: 16, alt: "Alunos fazendo uma apresentação de slides na frente da turma.", src: "https://picsum.photos/400/400?random=16" },
-    { id: 17, alt: "Livros e materiais didáticos organizados em uma mesa.", src: "https://picsum.photos/400/400?random=17" },
-    { id: 18, alt: "Sessão de brainstorming com notas adesivas em um mural.", src: "https://picsum.photos/400/400?random=18" },
-    { id: 19, alt: "Alunos utilizando microscópios em laboratório de ciências.", src: "https://picsum.photos/400/400?random=19" },
-    { id: 20, alt: "Evento de apresentação de projetos com público.", src: "https://picsum.photos/400/400?random=20" },
-];
-
-export const metrics = [
-    { value: "92%", title: "Taxa Média de Engajamento", desc: "Satisfação e participação ativa dos alunos nos projetos.", icon: "trending_up" },
-    { value: "35", title: "Projetos de Software Entregues", desc: "Total de projetos funcionais desenvolvidos pelos estudantes.", icon: "assignment" },
-    { value: "4", title: "Ferramentas Profissionais Usadas", desc: "Média de softwares ou linguagens exploradas por módulo.", icon: "build" },
-    { value: "80+", title: "Horas de Feedback e Mentoria", desc: "Tempo dedicado ao desenvolvimento individual de cada aluno.", icon: "schedule" },
-];
-
-export { fetchLessons as lessons,
-    fetchTeamMembers as teamMembers,
-    fetchPostContent as getPostContent
-};
-
-// export const getPostContent = (postId) => {
-//     // garante número (postId pode vir como string)
-//     const id = Number(postId);
-
-//     // Conteúdo detalhado mockado para o post principal (id = 1)
-//     if (id === 1) {
-//         return {
-//             id: 1,
-//             title: "Implementando Aprendizagem Baseada em Projetos no Ensino Médio",
-//             author: "Prof. Joana da Silva",
-//             date: "15 de Agosto de 2024",
-//             image: "https://picsum.photos/1000/500?random=7",
-//             content: (
-//                 <>
-//                     <p>Este é o parágrafo introdutório do artigo, descrevendo o contexto inicial da experiência de ensino. O objetivo deste diário de bordo é documentar a transição de um modelo de aula expositiva para uma abordagem de Aprendizagem Baseada em Projetos (PBL) com a turma do 2º ano de Informática, focando em como essa mudança impactou o engajamento e a autonomia dos estudantes.</p>
-//                     <h2>O Desafio Inicial</h2>
-//                     <p>O principal desafio era quebrar a passividade dos alunos. As aulas tradicionais, embora ricas em conteúdo, geravam pouco envolvimento prático. A hipótese era que, ao colocar os estudantes como protagonistas de um projeto real, com entregas concretas, o interesse e a retenção do conhecimento seriam significativamente maiores.</p>
-//                     <blockquote>
-//                         <p>"A chave não era apenas ensinar a programar, mas inspirá-los a resolver problemas usando a programação como ferramenta."</p>
-//                     </blockquote>
-//                     <h3>Etapas do Projeto</h3>
-//                     <p>A implementação foi dividida em fases claras para guiar os alunos ao longo do semestre. A estrutura foi pensada para construir o conhecimento de forma incremental:</p>
-//                     <ul>
-//                         <li>Definição do Problema: Brainstorming em grupo para identificar um problema real da escola ou da comunidade que pudesse ser resolvido com um software simples.</li>
-//                         <li>Planejamento e Escopo: Criação de um documento simples definindo os objetivos, funcionalidades essenciais e o cronograma do projeto.</li>
-//                         <li>Desenvolvimento e Sprints: Ciclos de desenvolvimento de duas semanas, com apresentações parciais do progresso para a turma.</li>
-//                         <li>Apresentação Final: Demonstração do projeto final para uma banca de professores e colegas.</li>
-//                     </ul>
-//                     <h2>Resultados e Reflexões</h2>
-//                     <p>O resultado superou as expectativas. O nível de engajamento aumentou drasticamente, e os alunos demonstraram uma notável capacidade de auto-organização e colaboração. Os projetos finais, embora simples, eram funcionais e demonstravam uma compreensão profunda dos conceitos ensinados. A principal lição aprendida foi que, ao confiar na capacidade dos alunos e dar-lhes autonomia, o processo de aprendizagem se torna mais significativo e duradouro.</p>
-//                 </>
-//             ),
-//         };
-//     }
-
-//     // Se não for o post 1, tentar montar o post a partir da lista de aulas (fallback)
-//     const lesson = lessons.find(l => Number(l.id) === id);
-//     if (lesson) {
-//         return {
-//             id: lesson.id,
-//             title: lesson.title,
-//             author: lesson.author || 'Equipe IFPR',
-//             date: lesson.date || '',
-//             image: lesson.img || '',
-//             content: (
-//                 <>
-//                     <p>{lesson.excerpt}</p>
-//                     <p>Detalhes da aula estão sendo preparados — este é um conteúdo gerado automaticamente a partir do registro da aula.</p>
-//                 </>
-//             ),
-//         };
-//     }
-
-//     return null; // Caso o post não seja encontrado
-// };
-
 
 export const globalStyles = `
     /* IMPORTANTE: Incluir fontes */
@@ -165,6 +62,22 @@ export const globalStyles = `
         line-height: 1.25rem;
     }
 
+    footer {
+    width: 100%;
+    padding: 24px 0;
+    margin-top: auto; /* Empurra o footer para o final da página */
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background: #fff;
+    text-align: center;
+    color: var(--color-text-secondary);
+}
+
+    /* No container principal do seu App, use flex para o footer colar embaixo */
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 
     /* --- HEADER (NavBar) --- */
 

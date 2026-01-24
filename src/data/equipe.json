@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "name": "Tiago Lucas Oliveira",
+    "role": "Dev. Back End & Estudante de ADS (IFPR)",
+    "email": "tiago.lucas.oliveira18@gmail.com",
+    "linkedin": "https://linkedin.com/in/tiagoollucas",
+    "img": "https://i.imgur.com/Enpis1k.jpeg",
+    "description": ""
+  },
+  {
+    "id": 5,
+    "name": "Julio Cesar Cester",
+    "role": "Dev. Front End & Estudante de ADS (IFPR)",
+    "email": "jccester59@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/julio-cesar-cester",
+    "img": "https://i.imgur.com/1GWrdZe.png",
+    "description": null
+  },
+  {
+    "id": 6,
+    "name": "Natan Lima",
+    "role": "Dev. Full-stack & Estudante de ADS (IFPR)",
+    "email": "natan.br15@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/natan-rizzo/",
+    "img": "https://picsum.photos/800/400?random=10",
+    "description": null
+  },
+  {
+    "id": 8,
+    "name": "Gabriel Fernandes",
+    "role": "Dev. Full-stack & Estudante de ADS (IFPR)",
+    "email": "gabrielfsilva09@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/gabriel-fernandes-920421204",
+    "img": "https://picsum.photos/800/400?random=20",
+    "description": null
+  },
+  {
+    "id": 9,
+    "name": "Adrian Campana",
+    "role": "Dev. Full-stack & Estudante de ADS (IFPR)",
+    "email": "adrianphcampana12@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/adrian-campana",
+    "img": "https://picsum.photos/800/400?random=30",
+    "description": null
+  },
+  {
+    "id": 10,
+    "name": "Stephane Cristine Vilas Boas",
+    "role": "Estudante de ADS (IFPR)",
+    "email": "stephanecristine2@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/stephane-cristine-vilas-boas-49615b288",
+    "img": "https://picsum.photos/800/400?random=40",
+    "description": null
+  },
+  {
+    "id": 11,
+    "name": "Beatriz Novaes",
+    "role": "Estudante de ADS (IFPR)",
+    "email": null,
+    "linkedin": "https://www.linkedin.com/in/beatriz-rocha-7842aa1b3",
+    "img": "https://picsum.photos/800/400?random=50",
+    "description": null
+  },
+  {
+    "id": 12,
+    "name": "Thalissa",
+    "role": "Estudante de ADS (IFPR)",
+    "email": null,
+    "linkedin": null,
+    "img": "https://picsum.photos/800/400?random=60",
+    "description": null
+  },
+  {
+    "id": 7,
+    "name": "Danilo Guimarães de Oliveira",
+    "role": "Consultor de atendimento",
+    "email": "danilogobr@gmail.com",
+    "linkedin": null,
+    "img": "https://picsum.photos/800/400?random=70",
+    "description": null
+  }
+]
