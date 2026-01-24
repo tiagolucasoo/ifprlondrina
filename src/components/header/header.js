@@ -1,9 +1,16 @@
 import React from 'react';
 import './header.css';
-import { navItems } from '../../utils/AppConfig.js';
 
 // Header.jsx (Simula a navegação com 'navigate' passado via props)
 const Header = ({ currentPage, navigate }) => {
+    const navItems = [
+        { name: 'Inicial', path: '/' },
+        { name: 'Aulas', path: '/aulas' },
+        { name: 'Equipe', path: '/equipe' },
+        { name: 'Galeria', path: '/galeria' },
+        { name: 'Gráficos', path: '/dashboard' }
+    ];
+
     // Função auxiliar para determinar se um link está ativo (incluindo sub-rotas como /post/1)
     const isActive = (path) => {
         if (path === '/') {
