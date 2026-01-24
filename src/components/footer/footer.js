@@ -7,7 +7,7 @@ const Footer = () => (
                 <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>
                     Desenvolvido por <a href="https://github.com/tiagolucasoo" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 'bold', marginLeft: '5px' }}>
                         Tiago Lucas Oliveira
-                    </a> e Equipe ADS IFPR Londrin.
+                    </a> e Equipe ADS IFPR Londrina.
                 </p>
             </div>
     </footer>
