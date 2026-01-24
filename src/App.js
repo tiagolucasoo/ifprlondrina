@@ -28,7 +28,7 @@ const App = () => {
         if (path === '/aulas') return <Aulas navigate={navigate} currentPage={path} />;
         if (path === '/equipe') return <Equipe navigate={navigate} currentPage={path} />;
         if (path === '/galeria') return <Galeria navigate={navigate} currentPage={path} />;
-        if (path === '/grafico') return <Grafico navigate={navigate} currentPage={path} />;
+        if (path === '/dashboard') return <Grafico navigate={navigate} currentPage={path} />;
 
         // rota /post/:id
         if (path.startsWith('/post/')) {
