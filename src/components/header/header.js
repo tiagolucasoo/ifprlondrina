@@ -25,9 +25,9 @@ const Header = ({ currentPage, navigate }) => {
                 <div className="header-content">
                     <div className="logo-area">
                         {/* Ao clicar na logo, volta para a página inicial */}
-                        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
+                        <button onClick={() => navigate('/')} className="logo-button">
                             <img src="/logo.png" alt="Logo IFPR" className="ifpr-logo" /> 
-                        </a>
+                        </button>
                         <div className="titles">
                             <h1>Extensão IFPR  •  Turma 2023</h1>
                             <h2>Empreendedorismo em Inglês</h2>
@@ -35,14 +35,13 @@ const Header = ({ currentPage, navigate }) => {
                     </div>
                     <nav>
                         {navItems.map(item => (
-                            <a 
+                            <button 
                                 key={item.path} 
-                                href="#" 
-                                onClick={(e) => { e.preventDefault(); navigate(item.path); }}
-                                className={isActive(item.path) ? 'active' : ''}
+                                onClick={() => navigate(item.path)}
+                                className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
                             >
                                 {item.name}
-                            </a>
+                            </button>
                         ))}
                     </nav>
                 </div>
